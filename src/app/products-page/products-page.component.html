@@ -1,0 +1,11 @@
+<div class="card">
+  <div class="card-header">
+    {{ pageTitle }}
+  </div>
+  <div class="card-body">
+    <!-- <prod-table [products]="products$ | async"></prod-table> -->
+    <!-- Two way binding needed to update product table listfilter -->
+    <pm-filter [(listFilter)]="listFilter"></pm-filter>
+    <pm-product-table [listFilter]="listFilter" ></pm-product-table>
+  </div>
+</div>

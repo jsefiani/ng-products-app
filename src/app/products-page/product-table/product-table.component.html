@@ -1,0 +1,27 @@
+<div class="table-responsive">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>
+          <button class="btn btn-primary"
+                  (click)='toggleImage()'>
+            {{ showImage ? 'Hide image' : 'Show image' }}
+          </button>
+        </th>
+        <th>Product</th>
+        <th>Code</th>
+        <th>Available</th>
+        <th>Price</th>
+        <th>5 Star Rating</th>
+      </tr>
+    </thead>    
+      <tbody *ngFor='let product of filteredProducts'>
+        <tr 
+          pm-product 
+          [product]="product"
+          [showImage]="showImage"
+        >
+        </tr>
+      </tbody>
+  </table>
+</div>

@@ -1,0 +1,16 @@
+<td>
+  <img *ngIf='showImage'
+    [src]="product.imageUrl"
+    [title]="product.productName"
+  >
+</td>
+<td>{{ product.productName }}</td>
+<td>{{ product.productCode | lowercase | convertToSpaces: '-'}}</td>
+<td>{{ product.releaseDate }}</td>
+<td>{{ product.price | currency:'EUR':'symbol'}}</td>
+<td>
+  <pm-star 
+    [rating]='product.starRating'
+    (ratingClicked)='onRatingClicked($event)'>
+  </pm-star>
+</td>

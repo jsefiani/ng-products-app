@@ -1,6 +1,7 @@
-import { Component, OnInit } from "@angular/core";
-import { IProduct } from "./product";
-import { ProductService } from "./product.service";
+import { Component, OnInit, OnDestroy } from "@angular/core";
+import { IProduct } from "../products-page/product";
+import { ProductService } from "../products-page/product.service";
+import { Subscription, Observable } from "rxjs";
 
 @Component({
     selector: 'pm-products',
@@ -14,6 +15,7 @@ export class ProductListComponent implements OnInit {
     imageMargin: number = 2;
     showImage: boolean = false;
     errorMessage: string;
+    products$: Observable<IProduct[]>;
     
     constructor(private productService: ProductService) {
         this.listFilter = ''; 
@@ -44,17 +46,18 @@ export class ProductListComponent implements OnInit {
     }
 
     onRatingClicked(message: string): void {
-        this.pageTitle = `Product List: ${message}`
+        this.pageTitle = `Product List: ${message}` 
     }
 
     ngOnInit():void {
         console.log('OnInit');
-        this.productService.getProducts().subscribe(
-            products => {
-                this.products = products;
-                this.filteredProducts = this.products;
-            },
-            error => this.errorMessage = <any>error
-        );
+        this.products$ = this.productService.getProducts()
+        // .subscribe(
+        //     products => {
+        //         this.products = products;
+        //         this.filteredProducts = this.products;
+        //     },
+        //     error => this.errorMessage = <any>error
+        // );
     }
 }
